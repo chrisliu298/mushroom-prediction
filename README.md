@@ -16,6 +16,7 @@ Wall time: 16.9 s
 # How to run
 
 ```shell
+wget -nv https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data
 python3 train.py
 ```
 
