@@ -55,14 +55,12 @@ train_dataloader = DataLoader(TensorDataset(x_train, y_train), batch_size, shuff
 val_dataloader = DataLoader(TensorDataset(x_val, y_val), batch_size)
 test_dataloader = DataLoader(TensorDataset(x_test, y_test), batch_size)
 
-# Prepare model
+# Initialize model
 model = nn.Linear(features_encoded.shape[1], 1).to(device)
 optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 
-train_loss_hist = []
-train_acc_hist = []
-val_loss_hist = []
-val_acc_hist = []
+train_loss_hist, train_acc_hist = [], []
+val_loss_hist, val_acc_hist = [], []
 
 for epoch in range(epochs):
     # Training stage
@@ -71,14 +69,11 @@ for epoch in range(epochs):
     train_correct = 0
     for batch_idx, (x, y) in enumerate(train_dataloader):
         x, y = x.to(device), y.to(device)
-
         optimizer.zero_grad()
         output = model(x).squeeze()
         loss = F.binary_cross_entropy_with_logits(output, y)
-
         train_loss += loss.item()
         train_correct += torch.sigmoid(output).round().eq(y).sum().item()
-
         loss.backward()
         optimizer.step()
 
@@ -92,7 +87,6 @@ for epoch in range(epochs):
         for x, y in val_dataloader:
             x, y = x.to(device), y.to(device)
             output = model(x).squeeze()
-
             val_loss += F.binary_cross_entropy_with_logits(output, y).item()
             val_correct += torch.sigmoid(output).round().eq(y).sum().item()
 
@@ -118,7 +112,6 @@ with torch.no_grad():
     for x, y in test_dataloader:
         x, y = x.to(device), y.to(device)
         output = model(x).squeeze()
-
         test_loss += F.binary_cross_entropy_with_logits(output, y).item()
         test_correct += torch.sigmoid(output).round().eq(y).sum().item()
 
