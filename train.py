@@ -76,9 +76,9 @@ for epoch in range(epochs):
         train_correct += torch.sigmoid(output).round().eq(y).sum().item()
         loss.backward()
         optimizer.step()
-
     train_loss_hist.append(train_loss / len(train_dataloader.dataset))
     train_acc_hist.append(train_correct / len(train_dataloader.dataset))
+
     # Validation stage
     model.eval()
     val_loss = 0
@@ -89,7 +89,6 @@ for epoch in range(epochs):
             output = model(x).squeeze()
             val_loss += F.binary_cross_entropy_with_logits(output, y).item()
             val_correct += torch.sigmoid(output).round().eq(y).sum().item()
-
     val_loss_hist.append(val_loss / len(val_dataloader.dataset))
     val_acc_hist.append(val_correct / len(val_dataloader.dataset))
 
