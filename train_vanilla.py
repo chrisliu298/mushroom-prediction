@@ -6,9 +6,9 @@ is from UCI Machine Learning Repository.
 Train/Val/Test sizes: 3248/812/4062
 
 Final performance:
-Train loss: 0.0074	Train accuracy: 0.9994
-  Val loss: 0.0092	  Val accuracy: 1.0000
- Test loss: 0.0074	 Test accuracy: 1.0000
+Train loss: 0.0085	Train accuracy: 0.9991
+  Val loss: 0.0111	  Val accuracy: 0.9988
+ Test loss: 0.0082	 Test accuracy: 0.9990
 
 Wall time: 6.06 s
 
@@ -79,7 +79,7 @@ def main():
     x_val = np.array(np.hstack((np.ones((x_val.shape[0], 1)), x_val)))
     x_test = np.array(np.hstack((np.ones((x_test.shape[0], 1)), x_test)))
 
-    beta = np.random.rand(input_shape + 1)
+    beta = np.random.standard_normal(input_shape + 1)
     train_loss_hist, train_acc_hist = [], []
     val_loss_hist, val_acc_hist = [], []
 
