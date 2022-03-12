@@ -11,7 +11,6 @@ The final performance is shown below.
 |   Test (4062)    | 0.0006 |  0.9975  |
 
 
-
 # How to run
 
 ```shell
@@ -19,6 +18,7 @@ wget -nv https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agar
 python3 train.py
 # Wall time: 16.9 s
 ```
+
 
 # References 
 
