@@ -2,7 +2,17 @@
 
 Train a simple logistic regression model to predict if a mushroom is poisonous based on qualitative features. This implementation uses stochastic gradient descent for optimization and auto differentiation (PyTorch) for gradient calculation. The mushroom dataset [1] is from UCI Machine Learning Repository.
 
-The final performance is shown below. 
+
+## Hyperparameters
+
+| Hyperparameter | Value |
+| :------------: | :---: |
+|    # epochs    |  50   |
+| Learning rate  |  0.1  |
+|   Batch size   |  32   |
+
+
+## Performance
 
 |                  |  Loss  | Accuracy |
 | :--------------: | :----: | :------: |
@@ -11,7 +21,7 @@ The final performance is shown below.
 |   Test (4062)    | 0.0006 |  0.9975  |
 
 
-# How to run
+## How to run
 
 ```shell
 wget -nv https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data
@@ -20,6 +30,6 @@ python3 train.py
 ```
 
 
-# References 
+## References
 
 1. [Mushroom Data Set](https://archive.ics.uci.edu/ml/datasets/mushroom)
