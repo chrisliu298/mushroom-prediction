@@ -52,14 +52,16 @@ def accuracy(pred, target):
 
 def train(beta, x, y):
     beta -= lr * (x.T @ (sigmoid(x @ beta) - y)) / x.shape[0]
-    loss = cross_entropy_loss(sigmoid(x @ beta), y)
-    acc = accuracy(np.round(sigmoid(x @ beta)), y)
+    output = sigmoid(x @ beta)
+    loss = cross_entropy_loss(output, y)
+    acc = accuracy(np.round(output), y)
     return (loss, acc)
 
 
 def evaluate(beta, x, y):
-    loss = cross_entropy_loss(sigmoid(x @ beta), y)
-    acc = accuracy(np.round(sigmoid(x @ beta)), y)
+    output = sigmoid(x @ beta)
+    loss = cross_entropy_loss(output, y)
+    acc = accuracy(np.round(output), y)
     return (loss, acc)
 
 
