@@ -31,7 +31,7 @@ Vanilla:
 | Validation (813) |       0.0059       |  0.9988  |
 |   Test (4062)    |       0.0044       |  0.9993  |
 
-![](vanilla.png)
+![](figures/vanilla.png)
 
 Auto diff:
 |                  | Cross-entropy loss | Accuracy |
@@ -40,7 +40,7 @@ Auto diff:
 | Validation (813) |       0.0004       |  0.9988  |
 |   Test (4062)    |       0.0004       |  0.9994  |
 
-![](autodiff.png)
+![](figures/autodiff.png)
 
 ## How to run
 
