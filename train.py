@@ -33,7 +33,7 @@ batch_size = 32
 lr = 0.1
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Prepare data
+
 def prepare_data():
     global input_shape
     dataset = pd.read_csv("agaricus-lepiota.data")
@@ -123,7 +123,6 @@ def main():
             val_loss_hist[-1], val_acc_hist[-1]
         )
     )
-
     # Final evaluation on test set
     test_loss, test_correct = evaluate(model, test_dataloader)
     print(
