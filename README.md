@@ -35,9 +35,9 @@ Auto diff:
 Vanilla:
 |                  | Cross-entropy loss | Accuracy |
 | :--------------: | :----------------: | :------: |
-|   Train (3249)   |       0.0042       |  0.9997  |
-| Validation (813) |       0.0059       |  0.9988  |
-|   Test (4062)    |       0.0044       |  0.9993  |
+|   Train (3249)   |       0.0002       |  0.9997  |
+| Validation (813) |       0.0004       |  0.9988  |
+|   Test (4062)    |       0.0004       |  0.9993  |
 
 ![](figures/vanilla.png)
 

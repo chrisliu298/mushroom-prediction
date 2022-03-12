@@ -68,7 +68,7 @@ def train(model, optimizer, dataloader):
         correct += torch.sigmoid(output).round().eq(y).sum().item()
         loss.backward()
         optimizer.step()
-    return (loss.item(), correct)
+    return (loss_, correct)
 
 
 def evaluate(model, dataloader):
