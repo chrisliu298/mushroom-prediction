@@ -1,40 +1,27 @@
-"""
-Train a simple logistic regression model to predict if a mushroom 
-is poisonous based on qualitative features. The mushroom dataset [1]
-is from UCI Machine Learning Repository.
-
-Train/Val/Test sizes: 3248/812/4062
-
-Final performance:
-Train loss: 0.0085	Train accuracy: 0.9991
-  Val loss: 0.0111	  Val accuracy: 0.9988
- Test loss: 0.0082	 Test accuracy: 0.9990
-
-Wall time: 6.06 s
-
-[1] https://archive.ics.uci.edu/ml/datasets/mushroom
-"""
-
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
 
 seed = 42
 np.random.seed(seed)
 val_size = 0.2
 test_size = 0.5
 epochs = 500
-lr = 1
+lr = 2
 
 
 def prepare_data():
     global input_shape
-    dataset = pd.read_csv("agaricus-lepiota.data")
-    features, labels = dataset.iloc[:, 1:], dataset.p
-    features_encoded = np.float32(OneHotEncoder().fit_transform(features).todense())
+    dataset = pd.read_csv(
+        "agaricus-lepiota.data",
+        header=None,
+        names=["label"] + [f"feature{i}" for i in range(22)],
+    )
+    features, labels = dataset.iloc[:, 1:], dataset.label
+    features_encoded = np.float32(pd.get_dummies(features))
     labels_encoded = np.float32(labels.apply(lambda x: 0 if x == "e" else 1))
-    input_shape = features_encoded[0].shape[1]
+    input_shape = len(features_encoded[0])
     x_train_val, x_test, y_train_val, y_test = train_test_split(
         features_encoded,
         labels_encoded,
@@ -45,6 +32,9 @@ def prepare_data():
     x_train, x_val, y_train, y_val = train_test_split(
         x_train_val, y_train_val, test_size=val_size, random_state=seed, shuffle=True
     )
+    print("Train size: {}".format(len(y_train)))
+    print("Val size: {}".format(len(y_val)))
+    print("Test size: {}".format(len(y_test)))
     return (x_train, y_train, x_val, y_val, x_test, y_test)
 
 
@@ -106,6 +96,23 @@ def main():
     # Final evaluation on test set
     test_loss, test_acc = evaluate(beta, x_test, y_test)
     print(" Test loss: {:.4f}\t Test accuracy: {:.4f}".format(test_loss, test_acc))
+
+    # Plot loss and accuracy curves
+    fig, ax = plt.subplots(1, 2, figsize=(10, 4))
+    ax[0].plot(np.arange(epochs), train_loss_hist, label="train loss")
+    ax[0].plot(np.arange(epochs), val_loss_hist, label="val loss")
+    ax[0].set_xlabel("Epoch")
+    ax[0].set_ylabel("Loss")
+    ax[0].set_title("Train/validation loss")
+
+    ax[1].plot(np.arange(epochs), train_acc_hist, label="train acc")
+    ax[1].plot(np.arange(epochs), val_acc_hist, label="val acc")
+    ax[1].set_xlabel("Epoch")
+    ax[1].set_ylabel("Accuracy")
+    ax[1].set_title("Train/validation acc")
+
+    plt.legend()
+    plt.show()
 
 
 if __name__ == "__main__":

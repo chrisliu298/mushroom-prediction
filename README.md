@@ -11,7 +11,7 @@ Vanilla:
 | Hyperparameter |       Value        |
 | :------------: | :----------------: |
 |    # epochs    |        500         |
-| Learning rate  |        1.0         |
+| Learning rate  |        2.0         |
 |   Batch size   | training data size |
 
 Auto diff:
@@ -27,17 +27,20 @@ Auto diff:
 Vanilla:
 |                  | Cross-entropy loss | Accuracy |
 | :--------------: | :----------------: | :------: |
-|   Train (3248)   |       0.0074       |  0.9990  |
-| Validation (812) |       0.0092       |  1.0000  |
-|   Test (4062)    |       0.0074       |  1.0000  |
+|   Train (3249)   |       0.0042       |  0.9997  |
+| Validation (813) |       0.0059       |  0.9988  |
+|   Test (4062)    |       0.0044       |  0.9993  |
+
+![](vanilla.png)
 
 Auto diff:
 |                  | Cross-entropy loss | Accuracy |
 | :--------------: | :----------------: | :------: |
-|   Train (3248)   |       0.0006       |  0.9972  |
-| Validation (812) |       0.0006       |  0.9957  |
-|   Test (4062)    |       0.0006       |  0.9975  |
+|   Train (3249)   |       0.0000       |  0.9991  |
+| Validation (813) |       0.0004       |  0.9988  |
+|   Test (4062)    |       0.0004       |  0.9994  |
 
+![](autodiff.png)
 
 ## How to run
 

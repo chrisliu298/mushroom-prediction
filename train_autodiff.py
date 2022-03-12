@@ -1,34 +1,17 @@
-"""
-Train a simple logistic regression model to predict if a mushroom 
-is poisonous based on qualitative features. The mushroom dataset [1]
-is from UCI Machine Learning Repository.
-
-Train/Val/Test sizes: 3248/812/4062
-
-Final performance:
-Train loss: 0.0006	Train accuracy: 0.9972
-  Val loss: 0.0006	  Val accuracy: 0.9957
- Test loss: 0.0006	 Test accuracy: 0.9975
-
-Wall time: 23.6 s
-
-[1] https://archive.ics.uci.edu/ml/datasets/mushroom
-"""
-
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
 from torch.utils.data import DataLoader, TensorDataset
 
 seed = 42
 torch.manual_seed(seed)
 val_size = 0.5
 test_size = 0.2
-epochs = 50
+epochs = 100
 batch_size = 32
 lr = 0.1
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -36,11 +19,15 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def prepare_data():
     global input_shape
-    dataset = pd.read_csv("agaricus-lepiota.data")
-    features, labels = dataset.iloc[:, 1:], dataset.p
-    features_encoded = np.float32(OneHotEncoder().fit_transform(features).todense())
+    dataset = pd.read_csv(
+        "agaricus-lepiota.data",
+        header=None,
+        names=["label"] + [f"feature{i}" for i in range(22)],
+    )
+    features, labels = dataset.iloc[:, 1:], dataset.label
+    features_encoded = np.float32(pd.get_dummies(features))
     labels_encoded = np.float32(labels.apply(lambda x: 0 if x == "e" else 1))
-    input_shape = features_encoded[0].shape[1]
+    input_shape = len(features_encoded[0])
     x_train_val, x_test, y_train_val, y_test = train_test_split(
         features_encoded,
         labels_encoded,
@@ -81,7 +68,7 @@ def train(model, optimizer, dataloader):
         correct += torch.sigmoid(output).round().eq(y).sum().item()
         loss.backward()
         optimizer.step()
-    return (loss, correct)
+    return (loss.item(), correct)
 
 
 def evaluate(model, dataloader):
@@ -133,6 +120,24 @@ def main():
     )
     # Save model
     torch.save(model.state_dict(), "model.ckpt")
+
+    # Plot loss and accuracy curves
+    fig, ax = plt.subplots(1, 2, figsize=(10, 4))
+    ax[0].plot(np.arange(epochs), train_loss_hist, label="train loss")
+    ax[0].plot(np.arange(epochs), val_loss_hist, label="val loss")
+    ax[0].set_xlabel("Epoch")
+    ax[0].set_ylabel("Loss")
+    ax[0].set_title("Train/validation loss")
+    ax[0].legend()
+
+    ax[1].plot(np.arange(epochs), train_acc_hist, label="train acc")
+    ax[1].plot(np.arange(epochs), val_acc_hist, label="val acc")
+    ax[1].set_xlabel("Epoch")
+    ax[1].set_ylabel("Accuracy")
+    ax[1].set_title("Train/validation acc")
+    ax[1].legend()
+
+    plt.show()
 
 
 if __name__ == "__main__":
