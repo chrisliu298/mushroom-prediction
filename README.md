@@ -26,7 +26,7 @@ Train a simple logistic regression model to predict if a mushroom is poisonous b
 ```shell
 wget -nv https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data
 python3 train.py
-# Wall time: 16.9 s
+# Wall time: 23.6 s
 ```
 
 
