@@ -4,6 +4,14 @@ Train a simple logistic regression model to predict if a mushroom is poisonous b
 
 The mushroom dataset [1] is from UCI Machine Learning Repository.
 
+## How to run
+
+```shell
+wget -nv https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data
+python3 train_vanilla.py
+python3 train_autodiff.py
+```
+
 
 ## Hyperparameters
 
@@ -41,14 +49,6 @@ Auto diff:
 |   Test (4062)    |       0.0004       |  0.9994  |
 
 ![](figures/autodiff.png)
-
-## How to run
-
-```shell
-wget -nv https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data
-python3 train_vanilla.py
-python3 train_autodiff.py
-```
 
 
 ## References
