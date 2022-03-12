@@ -4,20 +4,22 @@ Train a simple logistic regression model to predict if a mushroom
 is poisonous based on qualitative features using PyTorch. 
 The mushroom dataset [1] is from UCI Machine Learning Repository.
 
-Train/Val/Test splits: 3248/812/4062
+The final performance is shown below. 
 
-Final performance:
-Train loss: 0.0006	Train accuracy: 0.9972
-  Val loss: 0.0006	  Val accuracy: 0.9957
- Test loss: 0.0006	 Test accuracy: 0.9975
+|                  |  Loss  | Accuracy |
+| :--------------: | :----: | :------: |
+|   Train (3248)   | 0.0006 |  0.9972  |
+| Validation (812) | 0.0006 |  0.9957  |
+|   Test (4062)    | 0.0006 |  0.9975  |
 
-Wall time: 16.9 s
+
 
 # How to run
 
 ```shell
 wget -nv https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data
 python3 train.py
+# Wall time: 16.9 s
 ```
 
 # References 
