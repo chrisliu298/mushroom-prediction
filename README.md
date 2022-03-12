@@ -1,8 +1,6 @@
 # mushroom-prediction
 
-Train a simple logistic regression model to predict if a mushroom 
-is poisonous based on qualitative features using PyTorch. 
-The mushroom dataset [1] is from UCI Machine Learning Repository.
+Train a simple logistic regression model to predict if a mushroom is poisonous based on qualitative features. This implementation uses stochastic gradient descent for optimization and auto differentiation (PyTorch) for gradient calculation. The mushroom dataset [1] is from UCI Machine Learning Repository.
 
 The final performance is shown below. 
 
