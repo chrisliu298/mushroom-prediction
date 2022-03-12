@@ -6,9 +6,9 @@ is from UCI Machine Learning Repository.
 Train/Val/Test sizes: 3248/812/4062
 
 Final performance:
-Train loss: 0.0085	Train accuracy: 0.9991
-  Val loss: 0.0111	  Val accuracy: 0.9988
- Test loss: 0.0082	 Test accuracy: 0.9990
+Train loss: 0.0074	Train accuracy: 0.9994
+  Val loss: 0.0092	  Val accuracy: 1.0000
+ Test loss: 0.0074	 Test accuracy: 1.0000
 
 Wall time: 6.06 s
 

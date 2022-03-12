@@ -27,9 +27,9 @@ Auto diff:
 Vanilla:
 |                  | Cross-entropy loss | Accuracy |
 | :--------------: | :----------------: | :------: |
-|   Train (3248)   |       0.0085       |  0.9991  |
-| Validation (812) |       0.0111       |  0.9988  |
-|   Test (4062)    |       0.0082       |  0.9990  |
+|   Train (3248)   |       0.0074       |  0.9990  |
+| Validation (812) |       0.0092       |  1.0000  |
+|   Test (4062)    |       0.0074       |  1.0000  |
 
 Auto diff:
 |                  | Cross-entropy loss | Accuracy |
