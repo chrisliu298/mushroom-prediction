@@ -70,31 +70,31 @@ def init_model():
 
 def train(model, optimizer, dataloader):
     model.train()
-    train_loss = 0
-    train_correct = 0
-    for _, (x, y) in enumerate(dataloader):
+    loss_ = 0
+    correct = 0
+    for x, y in dataloader:
         x, y = x.to(device), y.to(device)
         optimizer.zero_grad()
         output = model(x).squeeze()
         loss = F.binary_cross_entropy_with_logits(output, y)
-        train_loss += loss.item()
-        train_correct += torch.sigmoid(output).round().eq(y).sum().item()
+        loss_ += loss.item()
+        correct += torch.sigmoid(output).round().eq(y).sum().item()
         loss.backward()
         optimizer.step()
-    return (train_loss, train_correct)
+    return (loss, correct)
 
 
 def evaluate(model, dataloader):
     model.eval()
-    val_loss = 0
-    val_correct = 0
+    loss = 0
+    correct = 0
     with torch.no_grad():
         for x, y in dataloader:
             x, y = x.to(device), y.to(device)
             output = model(x).squeeze()
-            val_loss += F.binary_cross_entropy_with_logits(output, y).item()
-            val_correct += torch.sigmoid(output).round().eq(y).sum().item()
-    return (val_loss, val_correct)
+            loss += F.binary_cross_entropy_with_logits(output, y).item()
+            correct += torch.sigmoid(output).round().eq(y).sum().item()
+    return (loss, correct)
 
 
 def main():
