@@ -1,6 +1,6 @@
 # mushroom-prediction
 
-Train a simple logistic regression model to predict if a mushroom is poisonous based on qualitative features. The [`train_autodiff.py`](train_autodiff.py) implementation uses **stochastic** gradient descent for optimization and auto differentiation (PyTorch) for gradient update, whereas the [`train_vanilla.py`](train_vanilla.py) uses **batch** gradient descent and calculates the gradient and updates it explicitly.
+Train a simple logistic regression model to predict if a mushroom is poisonous based on qualitative features. The [`train_autodiff.py`](train_autodiff.py) implementation uses **stochastic** gradient descent for optimization and auto differentiation (PyTorch) for gradient update, whereas the [`train_vanilla.py`](train_vanilla.py) one uses **batch** gradient descent and calculates the gradient and updates it explicitly.
 
 The mushroom dataset [1] is from UCI Machine Learning Repository.
 
@@ -8,10 +8,11 @@ The mushroom dataset [1] is from UCI Machine Learning Repository.
 ## Hyperparameters
 
 Vanilla:
-| Hyperparameter | Value |
-| :------------: | :---: |
-|    # epochs    |  500  |
-| Learning rate  |  1.0  |
+| Hyperparameter |       Value        |
+| :------------: | :----------------: |
+|    # epochs    |        500         |
+| Learning rate  |        1.0         |
+|   Batch size   | training data size |
 
 Auto diff:
 | Hyperparameter | Value |
