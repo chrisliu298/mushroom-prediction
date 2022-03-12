@@ -17,7 +17,7 @@ Vanilla:
 Auto diff:
 | Hyperparameter | Value |
 | :------------: | :---: |
-|    # epochs    |  50   |
+|    # epochs    |  100  |
 | Learning rate  |  0.1  |
 |   Batch size   |  32   |
 
